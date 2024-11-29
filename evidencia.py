@@ -52,13 +52,25 @@ def zisti_zostatky(zoznam):
             slovnik[meno] = suma
     return slovnik
 
+def uloz_do_suboru(udaje, nazov_suboru):
+    with open(nazov_suboru, 'w', encoding='utf-8') as f:
+        f.writelines(udaje)
+
+
 
 nacitany_subor = nacitaj_subor('fond.txt')
 registruj_vklad(nacitany_subor, 'Jozo', 10)
 registruj_vyber(nacitany_subor, 'Jozo', 5)
+registruj_vklad(nacitany_subor, 'Adam', 20)
+registruj_vklad(nacitany_subor, 'Martin', 15)
+registruj_vyber(nacitany_subor, 'Adam', 5)
 print(zisti_zostatok(nacitany_subor))
 print(zisti_zostatok_podla_mena(nacitany_subor, 'Jozo'))
 print(zisti_zostatky(nacitany_subor))
+
+uloz_do_suboru(nacitany_subor, 'fond.txt')
+
+
 #print(nacitany_subor)
 
 

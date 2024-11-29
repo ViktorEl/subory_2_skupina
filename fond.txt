@@ -1,1 +1,6 @@
 Karol, 5
+Jozo, 10
+Jozo, -5
+Adam, 20
+Martin, 15
+Adam, -5
