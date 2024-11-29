@@ -20,7 +20,7 @@ def registruj_vyber(zoznam, meno, suma):
 
 def zisti_zostatok(zoznam):
     zostatok = 0
-    for prvok in zoznam:
+    for prvok in zoznam:                       # 'Karol, 5\n'
         rozdeleny_retazec = prvok.split(',') # ['Karol', '5\n']
         suma = rozdeleny_retazec[1]            # '5\n'
         suma = float(suma)                     # 5
@@ -28,11 +28,31 @@ def zisti_zostatok(zoznam):
     return zostatok
 
 
+def zisti_zostatok_podla_mena(zoznam, meno):
+    zostatok = 0
+    for prvok in zoznam:
+        rozdeleny_prvok = prvok.split(',')  # ['Karol', '5\n']
+        meno_ziaka = rozdeleny_prvok[0]     # 'Karol'
+        suma = rozdeleny_prvok[1]           # '5\n'
+        suma = float(suma)                  # 5
+        if meno_ziaka == meno:
+            zostatok += suma
+    return zostatok
+        
+
+
+
+
+def zisti_zostatky(zoznam):
+    pass
+
+
 
 nacitany_subor = nacitaj_subor('fond.txt')
 registruj_vklad(nacitany_subor, 'Jozo', 10)
 registruj_vyber(nacitany_subor, 'Jozo', 5)
 print(zisti_zostatok(nacitany_subor))
+print(zisti_zostatok_podla_mena(nacitany_subor, 'Jozo'))
 #print(nacitany_subor)
 
 
