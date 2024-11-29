@@ -5,11 +5,21 @@
 #zistiť zostatky všetkých žiakov
 #uložiť resp. načítať všetky pohyby v triednom fonde do resp. zo súboru.
 
+def uloz_do_suboru(udaje, nazov_suboru):
+    try:
+        with open(nazov_suboru, 'w', encoding='utf-8') as f:
+            f.writelines(udaje)
+    except PermissionError:
+        raise PermissionError('Chyba do suboru sa neda zapisovat')
+
 
 def nacitaj_subor(nazov):
-    with open(nazov, 'r', encoding='utf-8') as f:
-        nacitany_subor = f.readlines()
-        return nacitany_subor
+    try:
+        with open(nazov, 'r', encoding='utf-8') as f:
+            nacitany_subor = f.readlines()
+            return nacitany_subor
+    except FileNotFoundError:
+        uloz_do_suboru([], nazov)
     
 
 def registruj_vklad(zoznam, meno, suma):
@@ -59,16 +69,19 @@ def uloz_do_suboru(udaje, nazov_suboru):
 
 
 nacitany_subor = nacitaj_subor('fond.txt')
-registruj_vklad(nacitany_subor, 'Jozo', 10)
-registruj_vyber(nacitany_subor, 'Jozo', 5)
-registruj_vklad(nacitany_subor, 'Adam', 20)
-registruj_vklad(nacitany_subor, 'Martin', 15)
-registruj_vyber(nacitany_subor, 'Adam', 5)
-print(zisti_zostatok(nacitany_subor))
-print(zisti_zostatok_podla_mena(nacitany_subor, 'Jozo'))
-print(zisti_zostatky(nacitany_subor))
+#registruj_vklad(nacitany_subor, 'Jozo', 10)
+#registruj_vyber(nacitany_subor, 'Jozo', 5)
+#registruj_vklad(nacitany_subor, 'Adam', 20)
+#registruj_vklad(nacitany_subor, 'Martin', 15)
+#registruj_vyber(nacitany_subor, 'Adam', 5)
+#print(zisti_zostatok(nacitany_subor))
+#print(zisti_zostatok_podla_mena(nacitany_subor, 'Jozo'))
+#print(zisti_zostatky(nacitany_subor))
 
-uloz_do_suboru(nacitany_subor, 'fond.txt')
+try:
+    uloz_do_suboru(nacitany_subor, 'fond.txt')
+except PermissionError as chyba:
+    print(chyba)
 
 
 #print(nacitany_subor)
