@@ -40,12 +40,17 @@ def zisti_zostatok_podla_mena(zoznam, meno):
     return zostatok
         
 
-
-
-
 def zisti_zostatky(zoznam):
-    pass
-
+    slovnik = {}
+    for prvok in zoznam:
+        rozdeleny_prvok = prvok.split(',')
+        meno = rozdeleny_prvok[0]
+        suma = float(rozdeleny_prvok[1])
+        if meno in slovnik:
+            slovnik[meno] += suma
+        else:
+            slovnik[meno] = suma
+    return slovnik
 
 
 nacitany_subor = nacitaj_subor('fond.txt')
@@ -53,6 +58,7 @@ registruj_vklad(nacitany_subor, 'Jozo', 10)
 registruj_vyber(nacitany_subor, 'Jozo', 5)
 print(zisti_zostatok(nacitany_subor))
 print(zisti_zostatok_podla_mena(nacitany_subor, 'Jozo'))
+print(zisti_zostatky(nacitany_subor))
 #print(nacitany_subor)
 
 
