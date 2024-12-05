@@ -15,7 +15,13 @@ def vytvor_diktat(text, zoznam_symbolov):
             diktat_ziak = diktat_ziak + pismeno
     return diktat_ziak
 
+def uloz_do_suboru(nazov_suboru, diktat):
+    with open(nazov_suboru, 'w', encoding='utf-8') as f:
+        f.write(diktat)
 
 text = nacitaj_subor('ucitel.txt')
 symboly = ['i', 'y', 'ý', 'y', 'I', 'Y']
 diktat_ziak = vytvor_diktat(text, symboly)
+uloz_do_suboru('ziak.txt', diktat_ziak)
+
+
