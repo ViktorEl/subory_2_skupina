@@ -5,5 +5,17 @@ def nacitaj_subor(nazov_suboru):
         nacitany = f.read()
         return nacitany
     
+
+def vytvor_diktat(text, zoznam_symbolov):
+    diktat_ziak = ''
+    for pismeno in text:
+        if pismeno in zoznam_symbolov:
+            diktat_ziak = diktat_ziak + '_'
+        else:
+            diktat_ziak = diktat_ziak + pismeno
+    return diktat_ziak
+
+
 text = nacitaj_subor('ucitel.txt')
-print(text)
+symboly = ['i', 'y', 'ý', 'y', 'I', 'Y']
+diktat_ziak = vytvor_diktat(text, symboly)
