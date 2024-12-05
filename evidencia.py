@@ -62,10 +62,6 @@ def zisti_zostatky(zoznam):
             slovnik[meno] = suma
     return slovnik
 
-def uloz_do_suboru(udaje, nazov_suboru):
-    with open(nazov_suboru, 'w', encoding='utf-8') as f:
-        f.writelines(udaje)
-
 
 
 nacitany_subor = nacitaj_subor('fond.txt')
@@ -82,6 +78,7 @@ try:
     uloz_do_suboru(nacitany_subor, 'fond.txt')
 except PermissionError as chyba:
     print(chyba)
+
 
 
 #print(nacitany_subor)
